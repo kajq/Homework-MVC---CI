@@ -67,6 +67,7 @@ foreach($ver as $fila){
             <a href="<?=base_url("usuarios_controller/eliminar/$fila->id_usuario")?>">Eliminar</a>
         </td>
     </tr>
+    <a href="<?=base_url()?>">Volver</a>
 <?php
     
 }

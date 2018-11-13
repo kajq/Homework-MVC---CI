@@ -18,12 +18,31 @@ class usuarios_controller extends CI_Controller{
     //controlador por defecto
     public function index(){
          
-        //array asociativo con la llamada al metodo
-        //del modelo
-        $usuarios["ver"]=$this->usuarios_model->ver();
-         
         //cargo la vista y le paso los datos
-        $this->load->view("usuarios_view",$usuarios);
+        $this->load->view("login_view"); 
+         
+    }
+
+    //controlador para logiarse
+    public function login(){
+          //compruebo si se a enviado submit
+        if($this->input->post("submit")){
+         
+        //llamo al metodo login
+        $usuarios["login"]=$this->usuarios_model->login(
+            $this->input->post("email"),
+            $this->input->post("password")
+        );
+            if (count($usuarios["login"]) > 0 ) {
+                //array asociativo con la llamada al metodo
+                //del modelo
+                $usuarios["ver"]=$this->usuarios_model->ver();    
+                //cargo la vista y le paso los datos
+                $this->load->view("usuarios_view",$usuarios);
+            } else {
+                echo "Usuario o Contraseña incorrecta";
+            }
+        }
     }
      
     //controlador para añadir

@@ -8,6 +8,11 @@ class usuarios_model extends CI_Model{
         //cargamos la base de datos
         $this->load->database();
     }
+
+    public function login($email, $password){
+      $consulta = $this->db->query("SELECT * FROM usuarios WHERE email = '$email' and password = '$password'");
+      return $consulta->result();
+    }
      
     public function ver(){
         //Hacemos una consulta
